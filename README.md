@@ -112,6 +112,8 @@ We access Volt Management console using port forwarding on service, once we run 
 % kubectl port-forward service/mydb-voltdb-cluster-http -n volt 8081:8080
 
 ```
+![Volt Management Console Screen](./images/volt_vmc_start.png)
+
 
 We access Redpanda console using port forwarding on pod, once we run the following command we can access the console from `http://localhost:8080`
 ```zsh
@@ -119,6 +121,7 @@ We access Redpanda console using port forwarding on pod, once we run the followi
 % kubectl port-forward rp-console-6d49576f4-pnp4v -n redpanda 8080:8080
 
 ```
+![Redpanda Console Screen](./images/redpanda_console_start.png)
 ## Integration
 
 The files in this repo are used to integrate the systems along with helm upgrade
