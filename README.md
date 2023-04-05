@@ -105,18 +105,18 @@ bad_cdrs  OK
 ```
 ## Accessing Consoles
 
-We access Volt Management console using port forwarding on service, once we run the following command we can access console from `http://localhost:8081`
+We access __Volt Management console__ using port forwarding on service, once we run the following command we can access console from `http://localhost:8081`
 
 ```zsh
 
 % kubectl port-forward service/mydb-voltdb-cluster-http -n volt 8081:8080
 
-```
+```	
 
 ![Volt Management Console Screen](./images/volt_vmc_start.png)
 
 
-We access Redpanda console using port forwarding on pod, once we run the following command we can access the console from `http://localhost:8080`
+We access __Redpanda console__ using port forwarding on pod, once we run the following command we can access the console from `http://localhost:8080`
 
 ```zsh
 
@@ -147,7 +147,7 @@ cluster:
           enabled: 'true'
           format: "csv"
           properties:
-            topics: "incoming_cdrs"
+            topics: "incoming_cdrs"          #Pulls from this Topic
             procedure: "HandleMediationCDR"  #Name of the StoredProcedure that will do work on the incoming messages
             brokers: "<<REPLACE_WITH_YOUR_REDPANDA_BROKERS_SVC>>"
 
@@ -165,7 +165,30 @@ REVISION: 2
 ```
 This has the incoming pipeline set between Redpanda Brokers and Volt
 ### Export - Volt
-The export configurations come under the same hierarchy of 
+The export configurations come under the same hierarchy of __cluster.config.deployment.__
+
+```yaml 
+      export:
+        configurations:
+        - target: "unaggregated_cdrs" #Target Topic 1
+          type: kafka                 #Kafka API 
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "<<REPLACE_WITH_YOUR_REDPANDA_BROKERS_SVC>>"
+            topic.key: "unaggregated_cdrs.unaggregated_cdrs"
+        - target: "bad_cdrs"			#Target Topic 2
+          type: kafka
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "<<REPLACE_WITH_YOUR_REDPANDA_BROKERS_SVC>>"
+            topic.key: "bad_cdrs.bad_cdrs"
+        - target: "aggregated_cdrs"			#Target Topic 3
+          type: kafka
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "<<REPLACE_WITH_YOUR_REDPANDA_BROKERS_SVC>>"
+            topic.key: "aggregated_cdrs.aggregated_cdrs"
+```
 
 ### MessageGenerator - Redpanda
 
