@@ -164,7 +164,9 @@ REVISION: 2
 
 ```
 This has the incoming pipeline set between Redpanda Brokers and Volt
+
 ### Export - Volt
+
 The export configurations come under the same hierarchy of __cluster.config.deployment.__
 
 ```yaml 
@@ -190,9 +192,21 @@ The export configurations come under the same hierarchy of __cluster.config.depl
             topic.key: "aggregated_cdrs.aggregated_cdrs"
 ```
 
+The above configuration is passed in helm upgrade to upgrade volt export configuration on the fly, without downtime or restart
+```zsh
+
+% helm upgrade mydb voltdb/voltdb --version=1.8.3 -n volt  --reuse-values  --values export.yaml
+
+Release "mydb" has been upgraded. Happy Helming!
+NAME: mydb
+NAMESPACE: volt
+STATUS: deployed
+REVISION: 3
+
+```
 ### MessageGenerator - Redpanda
 
-## Observability
+## Observing the setup in Action
 
 ### Volt Management Console
 
