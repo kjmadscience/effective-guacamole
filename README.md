@@ -67,7 +67,7 @@ redpanda-2                    1/1     Running     0
 redpanda-post-install-kdnpw   0/1     Completed   0          
 ```
 ## Schema and Topics
-The schema details for Volt are in [db.sql](gitlink3)
+The schema details for Volt are in [voltdb-aggdemo-createDB.sql](./voltdb-aggdemo-createDB.sql)
 
 ```zsh
 
@@ -123,9 +123,9 @@ We access Redpanda console using port forwarding on pod, once we run the followi
 
 The files in this repo are used to integrate the systems along with helm upgrade
 
-[import.yaml](./import.yaml) : For incoming msgs into Volt from Redpanda topic
-[export.yaml](./export.yaml) : For outgoing processed or filtered msgs from Volt to Redpanda topic
-[testclient.yaml](gitlink3) : For incoming load simulation msgs from client to Redpanda topic
+- [import.yaml](./import.yaml) : For incoming msgs into Volt from Redpanda topic
+- [export.yaml](./export.yaml) : For outgoing processed or filtered msgs from Volt to Redpanda topic
+- [testClient.yaml](./testClient.yaml) : For incoming load simulation msgs from client to Redpanda topic
 
 ### Import - Volt
 A glimse at the import configs being simple and small, needing no restart of pods/ system.
