@@ -123,8 +123,8 @@ We access Redpanda console using port forwarding on pod, once we run the followi
 
 The files in this repo are used to integrate the systems along with helm upgrade
 
-[import.yaml](gitlink) : For incoming msgs into Volt from Redpanda topic
-[export.yaml](gitlink2) : For outgoing processed or filtered msgs from Volt to Redpanda topic
+[import.yaml](./import.yaml) : For incoming msgs into Volt from Redpanda topic
+[export.yaml](./export.yaml) : For outgoing processed or filtered msgs from Volt to Redpanda topic
 [testclient.yaml](gitlink3) : For incoming load simulation msgs from client to Redpanda topic
 
 ### Import - Volt
