@@ -1,0 +1,10 @@
+console:
+  config:
+    kafka:
+      brokers:
+        - redpanda-0.redpanda.redpanda.svc.cluster.local:9093
+        - redpanda-1.redpanda.redpanda.svc.cluster.local:9093
+        - redpanda-2.redpanda.redpanda.svc.cluster.local:9093
+
+service:
+  type: NodePort

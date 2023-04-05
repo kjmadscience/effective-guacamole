@@ -1,0 +1,23 @@
+cluster:
+  config: 
+    deployment:   
+      export:
+        configurations:
+        - target: "unaggregated_cdrs"
+          type: kafka
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093"
+            topic.key: "unaggregated_cdrs.unaggregated_cdrs"
+        - target: "bad_cdrs"
+          type: kafka
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093"
+            topic.key: "bad_cdrs.bad_cdrs"
+        - target: "aggregated_cdrs"
+          type: kafka
+          enabled: 'true'
+          properties:
+            bootstrap.servers: "redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093"
+            topic.key: "aggregated_cdrs.aggregated_cdrs"

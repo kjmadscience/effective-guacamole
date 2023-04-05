@@ -1,0 +1,12 @@
+cluster:
+  config: 
+    deployment:   
+      import:
+        configurations:
+        - type: "kafka"
+          enabled: 'true'
+          format: "csv"
+          properties:
+            topics: "incoming_cdrs"
+            procedure: "HandleMediationCDR"
+            brokers: "redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093"
