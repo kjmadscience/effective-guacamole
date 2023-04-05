@@ -19,7 +19,7 @@ helm repo add prometheus-community 'https://prometheus-community.github.io/helm-
 ```
 ## Installing Volt
 
-One can start a really simple 3 node volt cluster using only their license file and helm charts present on the remote repository.
+We can start a simple 3 node volt cluster using only the license file and helm charts present on the remote repository.
 
 default resource request is 1vCPU and 4Gi RAM 1Gi Storage and no limits are set, so the pods use what is avaiable to underlying hosts
 command log on
