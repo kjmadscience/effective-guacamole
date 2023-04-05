@@ -45,7 +45,7 @@ helm install redpanda redpanda/redpanda --namespace redpanda
 helm install rp-console redpanda-console/console --values console.yaml -n redpanda
 ```
 
-### Let's verify both of the deployments
+### Let's verify both deployments
 
 ```zsh
 
