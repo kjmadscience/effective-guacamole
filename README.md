@@ -242,12 +242,17 @@ In the args section of container definition, as shown below
 
 ```
 
+We create the Pod by 
 
-
+`kubectl create -f testClient.yaml -n client`
 
 ## Observing the setup in Action
 
+Once we create the load generating Pod, we can see the simulated traffic on the Redpanda and Volt.
+
 ### Volt Management Console
+
+
 
 ### Redpanda Console
 
