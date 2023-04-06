@@ -39,10 +39,11 @@ Similarly, Redpanda out of the box setup is,
 
 ```zsh
 
-helm install redpanda redpanda/redpanda --namespace redpanda
+helm install redpanda redpanda/redpanda --version=2.3.14 --namespace redpanda
 
 
 helm install rp-console redpanda-console/console --values console.yaml -n redpanda
+
 ```
 
 ### Let's verify both deployments
@@ -205,6 +206,44 @@ REVISION: 3
 
 ```
 ### MessageGenerator - Redpanda
+
+This is the part where the load is generated and directed to the integrated system.
+
+We can control various aspects of the nature of traffic generated to the system. It takes the following parameters
+
+It takes the following parameters:
+
+|Name|Meaning|Example Value|
+|-|-|-|
+|hostnames|Which db servers we’re connecting to. |redpanda.svc.fqdn name|
+|userCount|How many users we have|500000|
+|tpms|How many transactions to attempt each millisecond.|80|
+|durationseconds|How many seconds to run for|1800|
+|missingRatio|How often to do a global status query. Should be less than durationseconds|600|
+|dupRatio|How often we produce a duplicate record. A value of ‘2000’ means that 1 in 2000 records will be a duplicate. A value of ‘-1’ disables duplicate records|2000|
+|lateRatio|How often we produce a late record. Late records will be for valid sessions, but will be delivered out of sequence. A value of ‘2000’ means that 1 in 2000 records will be late. A value of ‘-1’ disables late records|2000|
+|dateis1970Ratio|How often we produce a late record with an unreasonably early timestamp we can’t process. A value of ‘2000’ means that 1 in 2000 records will be for 1-Jan-1970. A value of ‘-1’ disables these records|2000|
+|offset|Number to add to session id’s, which normally start at zero. Used when we want to run multiple copies of the generator at the same time.|0|
+
+Full details about client configurations are [here](https://github.com/srmadscience/voltdb-aggdemo)
+
+In the kubernetes environment we will pass the parameters in **testClient.yaml** 
+
+In the args section of container definition, as shown below
+
+```
+
+# hostnames, usercount, tpms, durationseconds, missing ratio,dup ratio, late ratio, dateis1970ratio, offset --> Legend for params
+	spec:       
+      containers:       
+      - name: c         
+        image: jadejakajal13/volt-aggdemo:9
+        args: ["java", "-jar", "volt-agg.jar", "redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093", "500000", "30", "900", "100000", "100000", "100000", "-1","0"] 
+
+```
+
+
+
 
 ## Observing the setup in Action
 
