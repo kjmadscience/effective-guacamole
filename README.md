@@ -121,7 +121,7 @@ We access __Volt Management console__ using port forwarding on service, once we 
 
 ![Volt Management Console Screen](./images/volt_vmc_start.png)
 
-<p align="center"><em>Volt Management Console Screen At Startup</em></p>
+<p align="center"><em style="color: slategray;">Volt Management Console Screen At Startup</em></p>
 
 
 We access __Redpanda console__ using port forwarding on pod, once we run the following command we can access the console from `http://localhost:8080`
@@ -134,7 +134,7 @@ We access __Redpanda console__ using port forwarding on pod, once we run the fol
 
 ![Redpanda Console Screen](./images/redpanda_console_Start.png)
 
-<p align="center"><em>Redpanda Console At Startup</em></p>
+<p align="center"><em style="color: slategray;">Redpanda Console At Startup</em></p>
 
 
 ## Integration
@@ -266,7 +266,7 @@ We access the Volt management console using port-forwarding as shown above, in [
 
 ![Volt Management Console Screen During Load Simulation](./images/volt_vmc_load.png)
 
-<p align="center"><em>Volt Management Console Screen During Load Simulation</em></p>
+<p align="center" ><em style="color: slategray;">Volt Management Console Screen During Load Simulation</em></p>
 
 ### Redpanda Console
 
